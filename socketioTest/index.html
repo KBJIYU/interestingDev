@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Jiyu's 87 chat room</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      form {padding: 3px; position: fixed; bottom: 0; width: 100%; }
+
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+    </style>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.0/dist/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.0/dist/semantic.min.js"></script>
+</head>
+
+<body>
+    <ul id="messages">
+        <h1>這是帥哥美女聊天室</h1>
+        <h3>現在有<p id="userCount" style="display: inline;"></p>人在聊天室裡</h3>
+    </ul>
+
+    <form action="">
+        <div class="ui fluid action input">
+            <input type="text" id="m" placeholder="Typing..." autocomplete="off">
+            <input type="submit" class="ui blue button">
+        </div>
+    </form>
+
+
+    <!-- socket io -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        $(function () {
+            var socket = io();
+            // send msg to socket
+            $('form').submit(function () {
+                // emit to socket
+                socket.emit('chat-message', $('#m').val());
+                $('#m').val('');
+                return false;
+            });
+            // catch msg from socket
+            socket.on('server-message', function (msg) {
+                $('#messages').append($('<li>').text(msg));
+            });
+
+            socket.on('userCount', function (uc) {
+                $('#userCount').text(uc);
+            });
+        });
+    </script>
+</body>
+
+</html>
