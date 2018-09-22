@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+
+<body>
+    <!-- 
+        1
+        ng-app
+        ng-init
+        ng-model
+        ng-bind
+        data-ng-app
+        data-ng-init
+        data-ng-model
+        data-ng-bind
+
+        2
+        {{ }} same as ng-bind
+        {{ }} could do logic computation
+        
+     -->
+    <!-- <div ng-app="" ng-init="name='大毛';phone='0919.....'">
+        <p>請輸入:</p>
+        <p>姓名： <input type="text" ng-model="name"></p>
+        <p>電話： <input type="text" ng-model="phone"></p>
+        <p ng-bind="name"></p>
+        <p>{{ phone }}</p>
+        <p>My first expression: {{ 5 + 5 }}</p>
+    </div> -->
+
+    <!--
+        3 
+        AngularJS modules define AngularJS applications.
+        AngularJS controllers control AngularJS applications.
+    -->
+    <div ng-app="myApp" ng-controller="myCtrl">
+
+        First Name: <input type="text" ng-model="firstName">
+        <p>Last Name: <input type="text" ng-model="lastName"></p>
+        <p>Full Name: {{firstName + " " + lastName}}</p>
+        <input style="background-color:{{myCol}}" ng-model="myCol" value="{{myCol}}">
+
+    </div>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope) {
+            $scope.firstName = "John";
+            $scope.lastName = "Doe";
+        });
+    </script>
+</body>
+
+</html>

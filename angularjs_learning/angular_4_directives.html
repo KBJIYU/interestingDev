@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+<!-- <body>
+
+    <div ng-app="" ng-init="quantity=1;price=5;names=[
+                                                        {name:'Jani',country:'Norway'},
+                                                        {name:'Hege',country:'Sweden'},
+                                                        {name:'Kai',country:'Denmark'}
+                                                                                        ]">
+
+        <h2>Cost Calculator</h2>
+        Quantity: <input type="number" ng-model="quantity"> Price: <input type="number" ng-model="price">
+        <p><b>Total in dollar:</b> {{quantity * price}}</p>
+
+        <ul>
+            <li ng-repeat="x in names">
+                {{ x.name + ', ' + x.country }}
+            </li>
+        </ul>
+
+    </div>
+
+</body> -->
+
+
+<!-- 
+    The legal restrict values are:
+
+    E for Element name
+    A for Attribute
+    C for Class
+    M for Comment
+
+
+ -->
+<body ng-app="myApp">
+    <jiyu-test></jiyu-test>
+    <div jiyu-test></div>
+    <div class="jiyu-test-2"></div>
+    <!-- directive: jiyu-test-3 -->
+    <script>
+        var app = angular.module("myApp", []);
+        app.directive("jiyuTest", function() {
+            return {
+                template: "<h1>Made by a directive!</h1>"
+            };
+        });
+        app.directive("jiyuTest2", function() {
+            return {
+                restrict: "C",
+                template: "<h1>made with class</h1>"
+            };
+        });
+
+        app.directive("jiyuTest3", function() {
+            return {
+                restrict: "M",
+                replace: true,
+                template: "<h3>mute</h3>"
+            };
+        });
+    </script>
+
+</body>
+
+</html>
