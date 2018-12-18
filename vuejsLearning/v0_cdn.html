@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vuejsLearning | v0_cdn</title>
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+
+<body>
+
+    <div id="app" v-if="showApp">
+        <div>
+            <h2>Declarative Rendering</h2>
+            <p v-bind:title="titleHoverMsg"> {{ title }} </p>
+
+            <hr>
+        </div>
+        <div>
+            <h2>Conditionals and Loops</h2>
+            <p> {{ myTodoTitle }}</p>
+            <ol>
+                <li v-for="todo in todos">
+                    {{ todo.text }}
+                </li>
+            </ol>
+            <button v-on:click="reverseMyTodoTitle">Reverse myTodoTitle</button>
+            <hr>
+        </div>
+        <div>
+            <h2>Handling User Input</h2>
+            <p>{{ inputMsg }}</p>
+            <input v-model="inputMsg">
+        </div>
+    </div>
+    
+    <div id="app2">
+        <h2>Composing with Components</h2>
+
+        <ol>
+            <!--
+                Now we provide each todo-item with the todo object
+                it's representing, so that its content can be dynamic.
+                We also need to provide each component with a "key",
+                which will be explained later.
+            -->
+            <todo-item v-for="k in groceryList" v-bind:todo="k" v-bind:key="k.id"></todo-item>
+        </ol>
+    </div>
+
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                showApp: true,
+                title: 'Hello Vue!',
+                titleHoverMsg: 'Hello Hover~~~Vue~~~~!',
+                myTodoTitle: 'My Todo',
+                todos: [{
+                        text: 'JavaScript'
+                    },
+                    {
+                        text: 'Vue'
+                    },
+                    {
+                        text: 'Python'
+                    }
+                ],
+                inputMsg: 'Default Msg'
+            },
+            methods: {
+                reverseMyTodoTitle() {
+                    this.myTodoTitle = this.myTodoTitle.split('').reverse().join('')
+                }
+            }
+        });
+
+        // Define a new component called todo-item
+        Vue.component('todo-item', {
+            // The todo-item component now accepts a "prop", which is like a custom attribute.
+            // This prop is called todo.
+            props: ['todo'],
+            template: '<li>{{ todo.id }}-{{ todo.text }}</li>'
+        })
+        var app2 = new Vue({
+            el: '#app2',
+            data: {
+                groceryList: [{
+                        id: 0,
+                        text: 'Vegetables'
+                    },
+                    {
+                        id: 1,
+                        text: 'Cheese'
+                    },
+                    {
+                        id: 2,
+                        text: 'Whatever else humans are supposed to eat'
+                    }
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>
