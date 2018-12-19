@@ -1,31 +1,42 @@
 var data = {
-  items: [{ text: 'Bananas', checked: true }, { text: 'Apples', checked: false }],
+  items: [{
+    text: 'Bananas',
+    checked: true
+  }, {
+    text: 'Apples',
+    checked: false
+  }],
   title: 'My Shopping List',
   newItem: ''
 };
+
+
 /**
  * Declaring components
  */
+
 var ItemsComponent = Vue.extend({
   data: function () {
     return data;
   },
   template: '<ul>' +
-  '           <li v-for="item in items" :class="{ \'removed\': item.checked }">' +
-  '             <div class="checkbox">' +
-  '               <label>' +
-  '                 <input type="checkbox" v-model="item.checked"> {{ item.text }}' +
-  '               </label>' +
-  '             </div>' +
-  '           </li>' +
-  '         </ul>'
+    '           <li v-for="item in items" :class="{ \'removed\': item.checked }">' +
+    '             <div class="checkbox">' +
+    '               <label>' +
+    '                 <input type="checkbox" v-model="item.checked"> {{ item.text }}' +
+    '               </label>' +
+    '             </div>' +
+    '           </li>' +
+    '         </ul>'
 });
+
 var ChangeTitleComponent = Vue.extend({
   data: function () {
     return data;
   },
   template: '<input v-model="title"/>'
 });
+
 var AddItemComponent = Vue.extend({
   data: function () {
     return data;
@@ -44,13 +55,12 @@ var AddItemComponent = Vue.extend({
       }
     }
   },
-  template:
-  '<div class="input-group">'                                                                                                                     +
-    '<input v-model="newItem" @keyup.enter="addItem" placeholder="add shopping list item" type="text" class="form-control">'  +
-    '<span class="input-group-btn">'                                                                                          +
-    '  <button @click="addItem" class="btn btn-default" type="button">Add!</button>'                                          +
-    '</span>'                                                                                                                 +
-  '</div>'
+  template: '<div class="input-group">' +
+    '<input v-model="newItem" @keyup.enter="addItem" placeholder="add shopping list item" type="text" class="form-control">' +
+    '<span class="input-group-btn">' +
+    '  <button @click="addItem" class="btn btn-default" type="button">Add!</button>' +
+    '</span>' +
+    '</div>'
 });
 /**
  * Registering components

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Component</title>
+</head>
+
+<body>
+    <template id="form">
+        <div>
+            <label for="name">Input Your Name -></label>
+            <input :value="value" @input="onInput" id="name" type="text">
+        </div>
+    </template>
+
+    <template id="hello">
+        <h1>{{msg}} {{user}}</h1>
+    </template>
+
+    <template id="greetings">
+        <div>
+            <form-component v-model="user"></form-component>
+            <hello-component :user="user"></hello-component>
+        </div>
+    </template>
+
+    <div id="app">
+        <greetings-component></greetings-component>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+    <script>
+        Vue.component('form-component', {
+            template: '#form',
+            props: ['value'],
+            methods: {
+                onInput(event) {
+                    this.$emit('input', event.target.value)
+                }
+            }
+        });
+
+        Vue.component('hello-component', {
+            template: '#hello',
+            data() {
+                return {
+                    msg: 'Hello'
+                }
+            },
+            props: ['user']
+        });
+
+        Vue.component('greetings-component', {
+            template: '#greetings',
+            data() {
+                return {
+                    user: 'hero'
+                }
+            }
+        });
+
+        new Vue({
+            el: '#app'
+        });
+    </script>
+</body>
+
+</html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Shopping List</title>
@@ -29,20 +30,26 @@
     }
   </style>
 </head>
+
 <body>
-<div id="app" class="container">
-  <h2>{{ title }}</h2>
-  <add-item-component></add-item-component>
-  <items-component></items-component>
-  <div class="footer">
-    <hr/>
-    <em>Change the title of your shopping list here</em>
-    <change-title-component></change-title-component>
+  <div id="app" class="container">
+    <h2>{{ title }}</h2>
+
+    <add-item-component></add-item-component>
+
+    <items-component></items-component>
+
+    <div class="footer">
+      <hr />
+      <em>Change the title of your shopping list here</em>
+      <change-title-component></change-title-component>
+    </div>
+
   </div>
-</div>
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
-<script src="script.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>
