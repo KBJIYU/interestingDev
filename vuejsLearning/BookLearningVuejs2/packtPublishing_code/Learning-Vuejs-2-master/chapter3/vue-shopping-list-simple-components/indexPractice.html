@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping List</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <template id="add-item-template">
+
+    </template>
+
+    <template id="items-template">
+        <ul>
+            <item-component v-for="item in items" :item="item"></item-component>
+        </ul>
+    </template id="item-template">
+
+    <div id="app" class="container">
+        <add-item-component></add-item-component>
+        <items-component :items="items"></items-component>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+    <script src="scriptPractice.js"></script>
+</body>
+
+</html>
